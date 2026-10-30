@@ -1,0 +1,1403 @@
+﻿
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0eaff, #eee5ff, #dff6ff);
+  color: #243047;
+}
+
+/* Registration page */
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 430px;
+  padding: 38px 34px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 18px 50px rgba(57, 73, 115, 0.15);
+}
+
+/* Heading */
+.register-container h1 {
+  margin-bottom: 10px;
+  color: #5145cd;
+  font-size: 30px;
+  font-weight: 750;
+  text-align: center;
+  letter-spacing: -0.8px;
+}
+
+.register-container > p {
+  margin-bottom: 28px;
+  color: #758099;
+  font-size: 15px;
+  text-align: center;
+}
+
+/* Form layout */
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register-container label {
+  margin-top: 7px;
+  color: #34415a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Input fields */
+.register-container input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #dce2ef;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #1a2035;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-text-fill-color: #1a2035;
+}
+
+.register-container input::placeholder {
+  color: #8a96ae;
+  -webkit-text-fill-color: #8a96ae;
+  opacity: 1;
+}
+
+.register-container input:focus {
+  border-color: #7567e8;
+  box-shadow: 0 0 0 3px rgba(117, 103, 232, 0.13);
+  background: #ffffff;
+  color: #1a2035;
+  -webkit-text-fill-color: #1a2035;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   BUTTON SYSTEM â€” Professional, consistent, accessible
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+   Shared base (applied to every button via attribute selector so bare
+   <button> tags also get sensible defaults automatically)               */
+button {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease,
+              border-color 0.18s ease, box-shadow 0.18s ease,
+              transform 0.14s ease, opacity 0.18s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+button:focus-visible {
+  outline: 2.5px solid #7567e8;
+  outline-offset: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+/* â”€â”€ Primary â€” filled indigo (Login, Register, Create Ticket submit) â”€â”€ */
+.register-container button[type="submit"] {
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px 20px;
+  border-radius: 10px;
+  background: #5145cd;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(81, 69, 205, 0.18);
+}
+
+.register-container button[type="submit"]:hover:not(:disabled) {
+  background: #4035b5;
+  box-shadow: 0 4px 14px rgba(81, 69, 205, 0.28);
+  transform: translateY(-1px);
+}
+
+.register-container button[type="submit"]:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Registration success and error messages */
+.register-container p[role='status'] {
+  margin-top: 18px;
+  margin-bottom: 0;
+  padding: 12px;
+  border-radius: 9px;
+  background: #f0f4ff;
+  color: #5145cd;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* Mobile responsive design */
+@media (max-width: 480px) {
+  #root {
+    padding: 16px;
+  }
+
+  .register-container {
+    padding: 30px 22px;
+    border-radius: 16px;
+  }
+
+  .register-container h1 {
+    font-size: 26px;
+  }
+}
+
+/* Dashboard layout */
+.dashboard-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f7fc;
+  color: #26324b;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 240px;
+  padding: 28px 18px;
+  background: #29275f;
+  color: white;
+}
+
+.sidebar h2 {
+  margin: 0 0 35px;
+  font-size: 22px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar nav a {
+  padding: 12px 14px;
+  border-radius: 9px;
+  color: #deddf7;
+  text-decoration: none;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: #48458b;
+  color: white;
+}
+
+/* â”€â”€ Logout â€” header ghost button â”€â”€ */
+.logout-button {
+  padding: 8px 16px;
+  border: 1.5px solid #d1d5e0;
+  border-radius: 9px;
+  background: transparent;
+  color: #555875;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.logout-button:hover {
+  background: #fff0f0;
+  border-color: #f87171;
+  color: #c0392b;
+}
+
+.dashboard-main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.dashboard-header h1 {
+  margin-bottom: 8px;
+  font-size: 28px;
+}
+
+.dashboard-header p {
+  color: #7b8498;
+}
+
+.user-badge {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #e7e4ff;
+  color: #5145cd;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  padding: 22px;
+  border: 1px solid #e8ebf4;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 4px 14px rgba(37, 48, 80, 0.04);
+}
+
+.summary-card span {
+  color: #778197;
+  font-size: 14px;
+}
+
+.summary-card h2 {
+  margin-top: 14px;
+  font-size: 30px;
+}
+
+.tickets-section {
+  padding: 24px;
+  border: 1px solid #e8ebf4;
+  border-radius: 14px;
+  background: white;
+}
+
+.tickets-section > h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid #edf0f6;
+}
+
+.ticket-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.ticket-info strong {
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+
+.ticket-info span {
+  color: #8790a3;
+  font-size: 12px;
+}
+
+.ticket-status,
+.ticket-priority {
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ticket-status.open {
+  background: #fff0dc;
+  color: #a55c00;
+}
+
+.ticket-status.in-progress {
+  background: #e8edff;
+  color: #4357b9;
+}
+
+.ticket-status.resolved {
+  background: #dcf8e8;
+  color: #16804a;
+}
+
+.ticket-priority.high {
+  color: #d43c46;
+}
+
+.ticket-priority.medium {
+  color: #b77912;
+}
+
+.ticket-priority.low {
+  color: #16804a;
+}
+
+.dashboard-footer {
+  margin-top: 30px;
+  color: #8991a3;
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .summary-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 18px;
+  }
+
+  .sidebar h2 {
+    margin-bottom: 16px;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .dashboard-main {
+    padding: 20px 14px;
+  }
+
+  .summary-cards {
+    gap: 10px;
+  }
+
+  .summary-card {
+    padding: 16px;
+  }
+
+  .ticket-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  .ticket-priority {
+    grid-column: 2;
+  }
+}
+
+/* Ticket form fields */
+.register-container select,
+.register-container textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #dce2ef;
+  border-radius: 10px;
+  outline: none;
+  background: #f9faff;
+  color: #243047;
+  font: inherit;
+}
+
+.register-container select:focus,
+.register-container textarea:focus {
+  border-color: #7567e8;
+  box-shadow: 0 0 0 3px rgba(117, 103, 232, 0.13);
+}
+
+.register-container textarea {
+  resize: vertical;
+}
+
+/* â”€â”€ Switch / text link button (Login â†” Register toggle, Cancel) â”€â”€ */
+.switch-button {
+  background: transparent;
+  border: none;
+  color: #5145cd;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 2px 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+
+.switch-button:hover {
+  color: #3e31b3;
+}
+
+.register-container form .switch-button {
+  align-self: center;
+  margin-top: 8px;
+}
+
+/* â”€â”€ Create New Ticket â€” primary action in User Dashboard â”€â”€ */
+.btn-create-ticket {
+  margin-bottom: 26px;
+  padding: 11px 22px;
+  border-radius: 9px;
+  background: #5145cd;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(81, 69, 205, 0.15);
+}
+
+.btn-create-ticket:hover:not(:disabled) {
+  background: #4035b5;
+  box-shadow: 0 4px 14px rgba(81, 69, 205, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-create-ticket:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.ticket-row {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ticket-row:hover {
+  background-color: #f0efff;
+}
+
+.ticket-details {
+  margin-top: 24px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e5f0;
+  border-radius: 16px;
+  color: #292b55;
+  overflow-wrap: anywhere;
+}
+
+.ticket-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.ticket-details-header h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #292b55;
+}
+
+.ticket-details h3 {
+  margin-top: 24px;
+  color: #4f46d5;
+}
+
+.ticket-details p {
+  line-height: 1.7;
+  color: #555875;
+}
+
+/* â”€â”€ Close button â€” dismisses detail panel (indigo outline) â”€â”€ */
+.btn-close {
+  padding: 8px 16px;
+  border: 1.5px solid #5145cd;
+  border-radius: 8px;
+  background: transparent;
+  color: #5145cd;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn-close:hover:not(:disabled) {
+  background: #5145cd;
+  color: #ffffff;
+}
+
+/* Fix invisible dashboard headings and numbers */
+.dashboard-header h1 {
+  color: #292b55 !important;
+}
+
+.tickets-section h2 {
+  color: #292b55 !important;
+}
+
+.summary-card h2 {
+  color: #4f46d5 !important;
+  font-weight: 700;
+}
+
+.summary-card span {
+  color: #555875 !important;
+}
+
+/* Make dashboard text readable */
+.dashboard-header p {
+  color: #555875 !important;
+}
+
+.ticket-info strong {
+  color: #292b55 !important;
+}
+
+.ticket-info span {
+  color: #6b7280 !important;
+}
+
+.ticket-assignment {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.ticket-assignment select {
+  flex: 1;
+  min-width: 150px;
+  padding: 9px;
+  border: 1px solid #d9dcef;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #292b55;
+}
+
+/* â”€â”€ View / Update â€” opens detail panel (secondary outline) â”€â”€ */
+.btn-view {
+  padding: 8px 16px;
+  border: 1.5px solid #5145cd;
+  border-radius: 8px;
+  background: transparent;
+  color: #5145cd;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn-view:hover:not(:disabled) {
+  background: #5145cd;
+  color: #ffffff;
+}
+
+/* â”€â”€ Assign â€” saves supporter assignment (teal/green accent) â”€â”€ */
+.btn-assign {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #0ea5a0;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(14, 165, 160, 0.2);
+}
+
+.btn-assign:hover:not(:disabled) {
+  background: #0c8f8a;
+  box-shadow: 0 3px 10px rgba(14, 165, 160, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-assign:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* â”€â”€â”€ Role="alert" message styling (error) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.register-container p[role='alert'] {
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 9px;
+  background: #fff0f0;
+  color: #c0392b;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* â”€â”€â”€ Manager ticket row (stacked layout) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.manager-ticket-row {
+  padding: 18px 0;
+  border-top: 1px solid #edf0f6;
+}
+
+.manager-ticket-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 750px) {
+  .manager-ticket-top {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 10px;
+  }
+}
+
+/* â”€â”€â”€ Unassigned badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.ticket-status.unassigned {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* â”€â”€â”€ Chart section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.chart-section {
+  margin-bottom: 30px;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e8ebf4;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(37, 48, 80, 0.04);
+}
+
+.chart-section > h2 {
+  margin-bottom: 24px;
+  font-size: 18px;
+  color: #292b55;
+}
+
+.chart-inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.chart-canvas-wrap {
+  flex: 0 0 260px;
+  max-width: 260px;
+}
+
+.chart-stats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 180px;
+}
+
+.chart-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.chart-stat-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.chart-stat-label {
+  font-size: 12px;
+  color: #778197;
+  margin: 0 0 2px;
+}
+
+.chart-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #292b55;
+  margin: 0;
+}
+
+.chart-stat-resolution {
+  padding: 16px 20px;
+  background: #f5f3ff;
+  border-radius: 12px;
+  border-left: 4px solid #5145cd;
+}
+
+.chart-stat-big {
+  font-size: 36px;
+  font-weight: 800;
+  color: #5145cd;
+  margin: 4px 0 2px;
+}
+
+.chart-stat-sub {
+  font-size: 12px;
+  color: #778197;
+  margin: 0;
+}
+
+@media (max-width: 650px) {
+  .chart-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chart-canvas-wrap {
+    flex: unset;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* â”€â”€â”€ Refresh button (User Dashboard header) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.refresh-button {
+  padding: 8px 16px;
+  border: 1.5px solid #7567e8;
+  border-radius: 8px;
+  background: transparent;
+  color: #5145cd;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.refresh-button:hover:not(:disabled) {
+  background: #5145cd;
+  border-color: #5145cd;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.refresh-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* â”€â”€â”€ Update Status dropdown (Supporter ticket details panel) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.status-select {
+  flex: 1;
+  min-width: 160px;
+  height: 42px;
+  padding: 0 12px;
+  border: 1.5px solid #7567e8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #292b55;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  appearance: auto;         /* keep the native OS arrow */
+  -webkit-appearance: auto;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.status-select:focus {
+  border-color: #5145cd;
+  box-shadow: 0 0 0 3px rgba(117, 103, 232, 0.15);
+}
+
+.status-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Force option text/background to be always readable */
+.status-select option {
+  background-color: #ffffff;
+  color: #292b55;
+  font-size: 14px;
+  padding: 8px;
+}
+
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   FEEDBACK & TICKET REOPENING STYLES
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* "Still Facing This Issue?" button */
+.btn-reopen {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #fff7ed;
+  color: #b45309;
+  border: 1.5px solid #f59e0b;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-reopen:hover {
+  background: #f59e0b;
+  color: #ffffff;
+}
+
+/* Feedback form container */
+.feedback-form {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feedback-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #34415a;
+}
+
+.feedback-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #d9dcef;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  color: #243047;
+  background: #f9faff;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.feedback-form textarea:focus {
+  border-color: #7567e8;
+  box-shadow: 0 0 0 3px rgba(117, 103, 232, 0.13);
+  background: #fff;
+}
+
+/* Feedback form action buttons row */
+.feedback-form-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Submit & Reopen button */
+.btn-submit-feedback {
+  padding: 10px 20px;
+  background: #5145cd;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.btn-submit-feedback:hover:not(:disabled) {
+  background: #4035b5;
+}
+
+.btn-submit-feedback:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Cancel button */
+.btn-cancel-feedback {
+  padding: 10px 18px;
+  background: transparent;
+  color: #778197;
+  border: 1.5px solid #d1d5e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-cancel-feedback:hover {
+  background: #f0f2f8;
+  color: #26324b;
+}
+
+/* Feedback result messages */
+.feedback-msg {
+  margin-top: 14px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.feedback-msg.success {
+  background: #f0fdf4;
+  color: #16804a;
+  border: 1px solid #bbf7d0;
+}
+
+.feedback-msg.error {
+  background: #fff0f0;
+  color: #c0392b;
+  border: 1px solid #fecaca;
+}
+
+/* Feedback history section */
+.feedback-history {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f8f7ff;
+  border: 1px solid #e0dcff;
+  border-radius: 10px;
+}
+
+.feedback-history h4 {
+  font-size: 14px;
+  color: #5145cd;
+  margin-bottom: 12px;
+}
+
+.feedback-item {
+  padding: 10px 0;
+  border-top: 1px solid #ece9ff;
+}
+
+.feedback-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.feedback-text {
+  font-size: 14px;
+  color: #292b55;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.feedback-date {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* Reopened badge â€” used in Supporter & Manager dashboards */
+.badge-reopened {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #fff7ed;
+  color: #b45309;
+  border: 1px solid #f59e0b;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+
+/* â”€â”€ Mobile button responsiveness â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 480px) {
+  /* Full-width primary submit on small screens */
+  .register-container button[type="submit"] {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  /* Stack feedback form action buttons vertically */
+  .feedback-form-actions {
+    flex-direction: column;
+  }
+
+  .btn-submit-feedback,
+  .btn-cancel-feedback {
+    width: 100%;
+  }
+
+  /* Stack assignment row on small screens */
+  .ticket-assignment {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-assign {
+    width: 100%;
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   CREATE SUPPORTER SECTION (Manager Dashboard)
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.create-supporter-section {
+  margin-top: 30px;
+}
+
+.create-supporter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.create-supporter-header h2 {
+  font-size: 20px;
+  color: #292b55;
+}
+
+.create-supporter-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.create-supporter-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 860px) {
+  .create-supporter-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.csf-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.csf-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #34415a;
+}
+
+.csf-group input {
+  padding: 10px 12px;
+  border: 1.5px solid #dce2ef;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 14px;
+  color: #243047;
+  background: #f9faff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.csf-group input:focus {
+  border-color: #7567e8;
+  box-shadow: 0 0 0 3px rgba(117, 103, 232, 0.13);
+  background: #fff;
+}
+
+.csf-group input::placeholder {
+  color: #a0a9bb;
+}
+
+.create-supporter-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SUPPORTER PROGRESS CARDS (Manager Dashboard â†’ Supporters section)
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.supporter-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.supporter-progress-card {
+  background: #ffffff;
+  border: 1px solid #e8ebf4;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(37, 48, 80, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: box-shadow 0.2s;
+}
+
+.supporter-progress-card:hover {
+  box-shadow: 0 6px 20px rgba(37, 48, 80, 0.10);
+}
+
+/* Card header: avatar + name/email */
+.spc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spc-avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #e7e4ff;
+  color: #5145cd;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.spc-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #26324b;
+  margin: 0 0 2px;
+}
+
+.spc-email {
+  font-size: 12px;
+  color: #778197;
+  margin: 0;
+}
+
+/* Stats row: 4 mini stat boxes */
+.spc-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.spc-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 6px;
+  border-radius: 10px;
+  background: #f5f7fc;
+  border: 1px solid #e8ebf4;
+}
+
+.spc-stat--resolved {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.spc-stat--progress {
+  background: #eff0ff;
+  border-color: #c7d2fe;
+}
+
+.spc-stat--open {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.spc-stat-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: #26324b;
+  line-height: 1;
+}
+
+.spc-stat--resolved .spc-stat-value  { color: #16804a; }
+.spc-stat--progress .spc-stat-value  { color: #4357b9; }
+.spc-stat--open     .spc-stat-value  { color: #b77912; }
+
+.spc-stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #778197;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+/* Resolution progress bar */
+.spc-bar-wrap {
+  height: 6px;
+  background: #e8ebf4;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.spc-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #16804a);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+  min-width: 2px;
+}
+
+.spc-no-tickets {
+  font-size: 12px;
+  color: #a0a9bb;
+  text-align: center;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .spc-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* â”€â”€ Ticket status group sections (Manager Dashboard â†’ Support Tickets) â”€â”€ */
+.ticket-group {
+  margin-bottom: 28px;
+}
+
+.ticket-group-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e8eaf6;
+}
+
+.ticket-group-header h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #292b55;
+  margin: 0;
+}
+
+.ticket-group-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 9px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ticket-group-count--open     { background: #fff0dc; color: #a55c00; }
+.ticket-group-count--progress { background: #e8edff; color: #4357b9; }
+.ticket-group-count--resolved { background: #dcf8e8; color: #16804a; }
+
+.ticket-group-empty {
+  color: #aab3c5;
+  font-size: 14px;
+  padding: 12px 0 4px;
+  font-style: italic;
+}
+
+/* â”€â”€ Ticket status filter bar (Manager Dashboard â†’ Support Tickets) â”€â”€ */
+.ticket-filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  background: #f4f6fb;
+  border-radius: 10px;
+  border: 1px solid #e0e4f0;
+}
+
+.ticket-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #ffffff;
+  color: #5a6173;
+  transition: all 0.18s ease;
+}
+
+.ticket-filter-btn:hover {
+  border-color: #c5cae9;
+  background: #eef0fb;
+  color: #292b55;
+}
+
+/* All */
+.ticket-filter-btn--all.active {
+  background: #292b55;
+  color: #ffffff;
+  border-color: #292b55;
+}
+
+/* Open */
+.ticket-filter-btn--open.active {
+  background: #fff0dc;
+  color: #a55c00;
+  border-color: #f5b656;
+}
+
+/* In Progress */
+.ticket-filter-btn--in-progress.active {
+  background: #e8edff;
+  color: #4357b9;
+  border-color: #7c8fe8;
+}
+
+/* Resolved */
+.ticket-filter-btn--resolved.active {
+  background: #dcf8e8;
+  color: #16804a;
+  border-color: #52c788;
+}
+
+.ticket-filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.ticket-filter-btn.active .ticket-filter-count {
+  background: rgba(0, 0, 0, 0.12);
+}
