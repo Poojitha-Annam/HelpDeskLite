@@ -8,7 +8,9 @@ const db = mysql.createPool({
     database: process.env.DB_NAME,
     port: Number(process.env.DB_PORT) || 3306,
     waitForConnections: true,
-    connectionLimit: 10
+    connectionLimit: 10,
+    // Aiven MySQL requires SSL – DB_SSL=true is set in Render env vars
+    ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: true } : false,
 });
 
 module.exports = db;

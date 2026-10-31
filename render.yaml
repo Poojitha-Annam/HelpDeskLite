@@ -1,0 +1,38 @@
+services:
+  # ── Backend Web Service ──────────────────────────────────────────────────────
+  - type: web
+    name: helpdesklite-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: DB_HOST
+        sync: false          # You will fill this in Render dashboard
+      - key: DB_PORT
+        value: 3306
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: helpdesk_lite
+      - key: JWT_SECRET
+        generateValue: true  # Render auto-generates a secure random value
+
+  # ── Frontend Static Site ─────────────────────────────────────────────────────
+  - type: web
+    name: helpdesklite-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false          # Set this to your backend URL after deploying backend
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html   # Needed for React client-side routing
