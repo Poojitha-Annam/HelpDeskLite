@@ -165,4 +165,85 @@ router.post("/register-supporter", verifyToken, async (req, res) => {
     }
 });
 
+/* ── One-time Manager Setup ──────────────────────────────────────────────────
+ *
+ * POST /api/auth/setup-manager
+ *
+ * Purpose : Bootstrap the single Manager account for the entire application.
+ * Security: Requires a secret setup key stored only as a Render env variable.
+ *           The key is NEVER stored in code or committed to git.
+ * Guards  :
+ *   1. Verifies the caller knows MANAGER_SETUP_KEY   → 401 if wrong
+ *   2. Checks the DB for any existing Manager row    → 409 if one exists
+ *   3. Rejects if MANAGER_SETUP_KEY is not configured → 500 (misconfigured)
+ *
+ * After the first Manager is created this endpoint becomes permanently
+ * inoperable (step 2 always blocks it), so it is safe to leave registered.
+ * ─────────────────────────────────────────────────────────────────────────── */
+router.post("/setup-manager", async (req, res) => {
+    try {
+        // Guard: env var must be configured on the server
+        if (!process.env.MANAGER_SETUP_KEY) {
+            return res.status(500).json({
+                message: "Server misconfiguration: MANAGER_SETUP_KEY is not set."
+            });
+        }
+
+        const { setup_key, full_name, email, password } = req.body;
+
+        // Guard: caller must supply the correct secret key
+        if (!setup_key || setup_key !== process.env.MANAGER_SETUP_KEY) {
+            return res.status(401).json({
+                message: "Invalid setup key. Access denied."
+            });
+        }
+
+        // Validate fields
+        if (!full_name || !email || !password) {
+            return res.status(400).json({ message: "All fields are required." });
+        }
+
+        if (password.length < 8) {
+            return res.status(400).json({
+                message: "Manager password must be at least 8 characters."
+            });
+        }
+
+        // Guard: only ONE Manager is allowed in the entire system
+        const [existing] = await db.query(
+            "SELECT id FROM users WHERE role = 'Manager' LIMIT 1"
+        );
+
+        if (existing.length > 0) {
+            return res.status(409).json({
+                message: "A Manager account already exists. Setup is not allowed again."
+            });
+        }
+
+        // Also prevent using an already-registered email
+        const [emailCheck] = await db.query(
+            "SELECT id FROM users WHERE email = ?",
+            [email]
+        );
+
+        if (emailCheck.length > 0) {
+            return res.status(409).json({ message: "Email is already registered." });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 12); // stronger cost for Manager
+
+        await db.query(
+            "INSERT INTO users (full_name, email, password, role) VALUES (?, ?, ?, 'Manager')",
+            [full_name, email, hashedPassword]
+        );
+
+        res.status(201).json({
+            message: `Manager account created for ${full_name}. This endpoint is now permanently locked.`
+        });
+    } catch (error) {
+        console.error("Manager setup error:", error.message);
+        res.status(500).json({ message: "Failed to create Manager account." });
+    }
+});
+
 module.exports = router;
